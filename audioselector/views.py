@@ -43,6 +43,7 @@ def model_form_upload(request):
             print(
                 "%s was uploaded by '%s' and has %d views, %d likes, and %d dislikes" % (
                     r['title'], r['uploader'], r['view_count'], r['like_count'], r['dislike_count']))
+            return redirect(model_form_upload)
     else:
         upload_form = MediaForm()
         url_form = UrlForm()
