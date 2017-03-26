@@ -40,7 +40,7 @@ def model_form_upload(request):
                 print(r['id'])
                 if (os.path.exists(os.path.join(settings.MEDIA_ROOT, "online_song.mp3"))):
                     os.remove(os.path.join(settings.MEDIA_ROOT, "online_song.mp3"))
-                os.rename(r['id'], online_song_file_name())
+                os.rename(r['id'], os.path.join(settings.MEDIA_ROOT, "online_song.mp3"))
 
             return redirect(model_form_upload)
     else:
