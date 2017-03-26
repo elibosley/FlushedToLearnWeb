@@ -58,8 +58,6 @@ def model_form_upload(request):
                     os.remove(os.path.join(settings.MEDIA_ROOT, "online_song.mp3"))
                 os.rename(file['id'], os.path.join(settings.MEDIA_ROOT, "online_song.mp3"))
                 upload(file)
-                instance = MusicFile(media=file['id'])
-                instance.save()
 
             return redirect(model_form_upload)
     else:
