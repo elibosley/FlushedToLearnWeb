@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from flushedserver.audioselector.views import model_form_upload
+from audioselector.views import model_form_upload
 
 
 urlpatterns = [
