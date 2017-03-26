@@ -25,7 +25,7 @@ SECRET_KEY = '9)_5g8(+3wkd6!b6#b313x#j4%1($6f@mkvk+p)^zzt@8^8$^('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['flushedtolearn.herokuapp.com']
 
 
 # Application definition
