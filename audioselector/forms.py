@@ -6,3 +6,7 @@ class MediaForm(forms.ModelForm):
     class Meta:
         model = MusicFile
         fields = ('media',)
+
+
+class UrlForm(forms.Form):
+    url = forms.CharField(label='Video Url', max_length=1000)

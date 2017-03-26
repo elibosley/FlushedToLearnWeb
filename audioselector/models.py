@@ -14,5 +14,8 @@ def uploaded_song_file_name(instance, filename):
     return mp3name
 
 
+
+
+
 class MusicFile(models.Model):
     media = models.FileField(upload_to=uploaded_song_file_name)
