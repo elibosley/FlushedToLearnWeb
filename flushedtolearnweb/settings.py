@@ -37,19 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'audioselector',
-    'storages'
+    'audioselector'
 ]
-
-AWS_S3_SECURE_URLS = False       # use http instead of https
-AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
-AWS_S3_ACCESS_KEY_ID = 'AKIAIUA6P2AQW4PMHSUA' # enter your access key
-AWS_S3_SECRET_ACCESS_KEY = 'Ux3VIM//fSXLFpjYRDUN5EwvzsnYznOhcmJSqG+a' # enter your secret access key
-AWS_S3_CUSTOM_DOMAIN = "flushedsongsbucket"
-
-import ssl
-if hasattr(ssl, '_create_unverified_context'):
-   ssl._create_default_https_context = ssl._create_unverified_context
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -133,10 +122,8 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-MEDIA_URL = "https://%s/" % AWS_S3_CUSTOM_DOMAIN
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
