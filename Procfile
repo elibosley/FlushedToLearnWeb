@@ -1,1 +1,1 @@
-web: python manage.py runserver ${PORT}
+web: gunicorn flushedtolearnweb.wsgi --log-file -
