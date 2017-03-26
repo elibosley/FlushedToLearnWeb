@@ -1,5 +1,6 @@
 import os
 
+import boto3
 import youtube_dl
 from django.conf import settings
 from django.core.mail.backends import console
@@ -7,6 +8,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from audioselector.forms import MediaForm, UrlForm
+from audioselector.models import MusicFile
 
 
 def online_song_file_name():
@@ -16,6 +18,19 @@ def online_song_file_name():
         os.remove(fullname)
 
     return fullname
+
+
+client = boto3.client('s3', aws_access_key_id=settings.AWS_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY)
+bucket = settings.AWS_STORAGE_BUCKET_NAME
+
+
+def upload(d):
+    filename = "online_song.mp3"
+    filepath = os.path.join(settings.MEDIA_ROOT, "online_song.mp3")
+    client.upload_file(filepath, bucket, filename)
+    client.put_object_acl(ACL='public-read', Bucket=bucket, Key=filename)
+    region = "us-east-1"
+    return "https://s3-%s.amazonaws.com/{0}/{1}".format(region, bucket, filename)
 
 
 def model_form_upload(request):
@@ -36,11 +51,15 @@ def model_form_upload(request):
             url = url_form.cleaned_data['url']
             print(url)
             with ydl:
-                r = ydl.extract_info(url, download=True)  # don't download, much faster
-                print(r['id'])
+                file = ydl.extract_info(url, download=True)  # don't download, much faster
+
+                print(file['id'])
                 if (os.path.exists(os.path.join(settings.MEDIA_ROOT, "online_song.mp3"))):
                     os.remove(os.path.join(settings.MEDIA_ROOT, "online_song.mp3"))
-                os.rename(r['id'], os.path.join(settings.MEDIA_ROOT, "online_song.mp3"))
+                os.rename(file['id'], os.path.join(settings.MEDIA_ROOT, "online_song.mp3"))
+                upload(file)
+                instance = MusicFile(media=file['id'])
+                instance.save()
 
             return redirect(model_form_upload)
     else:

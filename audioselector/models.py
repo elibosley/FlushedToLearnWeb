@@ -15,4 +15,4 @@ def uploaded_song_file_name(instance, filename):
 
 
 class MusicFile(models.Model):
-    media = models.FileField(upload_to=uploaded_song_file_name)
+    media = models.FileField(upload_to='songs')
