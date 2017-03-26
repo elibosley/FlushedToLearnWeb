@@ -2,6 +2,7 @@ import os
 
 import youtube_dl
 from django.conf import settings
+from django.core.mail.backends import console
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -37,7 +38,9 @@ def model_form_upload(request):
             with ydl:
                 r = ydl.extract_info(url, download=True)  # don't download, much faster
                 print(r['id'])
+                console.log("old name:", online_song_file_name())
                 os.rename(r['id'], online_song_file_name())
+                console.log("new name:", r['id'])
 
             return redirect(model_form_upload)
     else:
