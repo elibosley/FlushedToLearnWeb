@@ -9,13 +9,10 @@ from audioselector.forms import MediaForm, UrlForm
 
 
 def online_song_file_name():
-    mp3name = 'online_song.mp3'
+    mp3name = "online_song.mp3"
     fullname = os.path.join(settings.MEDIA_ROOT, mp3name)
     if os.path.exists(fullname):
-        try:
-            os.remove(fullname)
-        except FileNotFoundError:
-            print("File not found!")
+        os.remove(fullname)
 
     return fullname
 
@@ -39,14 +36,12 @@ def model_form_upload(request):
             ydl = youtube_dl.YoutubeDL(options)
             r = None
             url = url_form.cleaned_data['url']
+            print(url)
             with ydl:
                 r = ydl.extract_info(url, download=True)  # don't download, much faster
+                print(r['id'])
                 os.rename(r['id'], online_song_file_name())
 
-            # print some typical fields
-            print(
-                "%s was uploaded by '%s' and has %d views, %d likes, and %d dislikes" % (
-                    r['title'], r['uploader'], r['view_count'], r['like_count'], r['dislike_count']))
             return redirect(model_form_upload)
     else:
         upload_form = MediaForm()

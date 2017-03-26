@@ -21,7 +21,6 @@ from audioselector.views import model_form_upload
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'$', model_form_upload),
     url(r'', include('audioselector.urls')),
 ]
 
