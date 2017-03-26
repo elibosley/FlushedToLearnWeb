@@ -7,15 +7,16 @@ from django.db import models
 # Create your models here.
 
 def uploaded_song_file_name(instance, filename):
-    mp3name = 'uploaded_song.mp3'
-    fullname = os.path.join(settings.MEDIA_ROOT, mp3name)
+    fullname = os.path.join(settings.MEDIA_ROOT, filename)
     if os.path.exists(fullname):
         os.remove(fullname)
-    return mp3name
-
-
-
+    return filename
 
 
 class MusicFile(models.Model):
     media = models.FileField(upload_to=uploaded_song_file_name)
+    selected = models.BooleanField(default=False)
+
+    @property
+    def filename(self):
+        return os.path.basename(self.file.name)

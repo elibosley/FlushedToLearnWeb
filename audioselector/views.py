@@ -2,10 +2,12 @@ import os
 
 import youtube_dl
 from django.conf import settings
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
 from audioselector.forms import MediaForm, UrlForm
+from audioselector.models import MusicFile
 
 
 def online_song_file_name():
@@ -14,6 +16,15 @@ def online_song_file_name():
     if os.path.exists(fullname):
         os.remove(fullname)
     return fullname
+
+
+def get_information():
+    response_data = {}
+    selected_music_filename = MusicFile.objects.filter(selected=True).first()
+    print(selected_music_filename.filename)
+    response_data['filename'] = selected_music_filename
+    response_data['test'] = "testjson"
+    return JsonResponse(response_data)
 
 
 def model_form_upload(request):
