@@ -12,7 +12,11 @@ def online_song_file_name():
     mp3name = 'online_song.mp3'
     fullname = os.path.join(settings.MEDIA_ROOT, mp3name)
     if os.path.exists(fullname):
-        os.remove(fullname)
+        try:
+            os.remove(fullname)
+        except FileNotFoundError:
+            print("File not found!")
+
     return fullname
 
 
