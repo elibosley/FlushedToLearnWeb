@@ -38,9 +38,9 @@ def model_form_upload(request):
             with ydl:
                 r = ydl.extract_info(url, download=True)  # don't download, much faster
                 print(r['id'])
-                console.log("old name:", online_song_file_name())
+                if (os.path.exists(os.path.join(settings.MEDIA_ROOT, "online_song.mp3"))):
+                    os.remove(os.path.join(settings.MEDIA_ROOT, "online_song.mp3"))
                 os.rename(r['id'], online_song_file_name())
-                console.log("new name:", r['id'])
 
             return redirect(model_form_upload)
     else:
