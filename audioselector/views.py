@@ -19,11 +19,8 @@ def online_song_file_name():
 
 def model_form_upload(request):
     if request.method == 'POST':
-        upload_form = MediaForm(request.POST, request.FILES)
         url_form = UrlForm(request.POST)
-        if upload_form.is_valid():
-            upload_form.save()
-            return redirect(model_form_upload)
+
         if url_form.is_valid():
             # Do youtube stuff
             options = {
@@ -44,9 +41,7 @@ def model_form_upload(request):
 
             return redirect(model_form_upload)
     else:
-        upload_form = MediaForm()
         url_form = UrlForm()
     return render(request, 'simple_upload.html', {
-        'upload_form': upload_form,
         'url_form': url_form
     })

@@ -11,10 +11,7 @@ def uploaded_song_file_name(instance, filename):
     fullname = os.path.join(settings.MEDIA_ROOT, mp3name)
     if os.path.exists(fullname):
         os.remove(fullname)
-    return mp3name
-
-
-
+    return fullname
 
 
 class MusicFile(models.Model):
