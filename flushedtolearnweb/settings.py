@@ -120,7 +120,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, "static_deploy")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = '/static/'
 MEDIA_URL = '/songs/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
