@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from flushedserver.audioselector.views import model_form_upload
 
-import audioselector
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'$', model_form_upload),
     url(r'', include('audioselector.urls')),
 ]

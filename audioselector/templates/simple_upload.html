@@ -17,7 +17,7 @@
                 <br><br>
                 <h1 class="header center teal-text text-lighten-2">Flushed to Learn</h1>
                 <div class="row center">
-                    <h5 class="header col s12 light">A modern toilet training tool for children and adults!</h5>
+                    <h5 class="header col s12 white-text">A modern toilet training tool for children and adults!</h5>
                 </div>
                 <div class="row center">
 
@@ -31,9 +31,15 @@
 
             </div>
         </div>
-        <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1"></div>
+        <div class="parallax"><img src="{% static "img/waterfall.jpg" %}" alt="Unsplashed background img 1"></div>
+
     </div>
+    <script>
 
+        $(document).ready(function () {
+            $('.parallax').parallax();
+        });
 
+    </script>
     </body>
 {% endblock %}

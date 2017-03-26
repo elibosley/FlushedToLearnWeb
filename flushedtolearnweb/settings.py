@@ -25,7 +25,7 @@ SECRET_KEY = '9)_5g8(+3wkd6!b6#b313x#j4%1($6f@mkvk+p)^zzt@8^8$^('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['flushedtolearn.herokuapp.com']
+ALLOWED_HOSTS = ['flushedtolearn.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -123,7 +123,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = '/static/'
 MEDIA_URL = '/songs/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
 # Heroku: Update database configuration from $DATABASE_URL.
 import dj_database_url
