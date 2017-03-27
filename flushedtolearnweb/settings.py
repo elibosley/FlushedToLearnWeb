@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '9)_5g8(+3wkd6!b6#b313x#j4%1($6f@mkvk+p)^zzt@8^8$^('
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -27,8 +27,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['flushedtolearn.herokuapp.com', 'localhost']
 
 AWS_STORAGE_BUCKET_NAME = 'flushedsongsbucket'
-AWS_ACCESS_KEY_ID = 'AKIAJFP5OTU7HOTN6OJQ'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 
 # Tell django-storages that when coming up with the URL for an item in S3 storage, keep
 # it simple - just use this domain plus the path. (If this isn't set, things get complicated).
